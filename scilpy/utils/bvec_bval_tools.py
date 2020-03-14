@@ -155,8 +155,7 @@ def fsl2mrtrix(fsl_bval_filename, fsl_bvec_filename, mrtrix_filename):
     save_scheme_mrtrix(points,
                        shell_idx,
                        bvals,
-                       basefilename,
-                       verbose=1)
+                       basefilename)
 
 
 def mrtrix2fsl(mrtrix_filename, fsl_bval_filename=None,
@@ -198,8 +197,7 @@ def mrtrix2fsl(mrtrix_filename, fsl_bval_filename=None,
                             shell_idx,
                             bvals,
                             filename_bval=fsl_bval_filename,
-                            filename_bvec=fsl_bvec_filename,
-                            verbose=1)
+                            filename_bvec=fsl_bvec_filename)
 
 
 def identify_shells(bvals, threshold=40.0):
