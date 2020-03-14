@@ -6,7 +6,8 @@ import numpy as np
 
 from scilpy.image.utils import volume_iterator
 from scilpy.samplingscheme.save_scheme import (save_scheme_bvecs_bvals,
-                                               save_scheme_mrtrix)
+                                               save_scheme_mrtrix,
+                                               save_scheme_caru, save_scheme_philips, save_scheme_siemens)
 from scilpy.utils.filenames import split_name_with_nii
 
 DEFAULT_B0_THRESHOLD = 20

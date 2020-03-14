@@ -24,7 +24,7 @@ def save_scheme_caru(points, shell_idx, filename):
     fullfilename, ext = split_name_with_nii(filename)
     fullfilename = fullfilename + '.caru'
 
-    with open(fullfilename) as f:
+    with open(fullfilename, "w") as f:
         f.write('# Caruyer format sampling scheme\n')
         f.write('# X Y Z shell_idx\n')
         for idx in range(points.shape[0]):
@@ -54,7 +54,7 @@ def save_scheme_philips(points, shell_idx, bvals, filename):
     fullfilename, ext = split_name_with_nii(filename)
     fullfilename = fullfilename + '.txt'
 
-    with open(fullfilename) as f:
+    with open(fullfilename, "w") as f:
         f.write('# Philips format sampling scheme\n')
         f.write('# X Y Z bval\n')
         for idx in range(points.shape[0]):
@@ -84,7 +84,7 @@ def save_scheme_mrtrix(points, shell_idx, bvals, filename):
     fullfilename, ext = split_name_with_nii(filename)
     fullfilename = fullfilename + '.b'
 
-    with open(fullfilename) as f:
+    with open(fullfilename, "w") as f:
         for idx in range(points.shape[0]):
             f.write('{:.8f} {:.8f} {:.8f} {:.2f}\n'.format(points[idx, 0],
                                                            points[idx, 1],
@@ -115,12 +115,13 @@ def save_scheme_bvecs_bvals(points, shell_idx, bvals, filename=None,
         filename_bval = fullfilename + '.bval'
         filename_bvec = fullfilename + '.bvec'
 
+        logging.info('Scheme saved in FSL format as {}'.format(fullfilename +
+                                                           '{.bvec/.bval}'))
+
     np.savetxt(filename_bvec, points.T, fmt='%.8f')
     np.savetxt(filename_bval, np.array([bvals[idx] for idx in shell_idx])[None, :], fmt='%.3f')
 
-    logging.info('Scheme saved in FSL format as {}'.format(fullfilename +
-                                                           '{.bvec/.bval}'))
-
+   
 
 def save_scheme_siemens(points, shell_idx, bvals, filename):
     """
@@ -163,7 +164,7 @@ def save_scheme_siemens(points, shell_idx, bvals, filename):
 
     fullfilename, ext = split_name_with_nii(filename)
     fullfilename = fullfilename + '.dvs'
-    with open(fullfilename) as f:
+    with open(fullfilename, "w") as f:
         for idx in range(len(str_save)):
             f.write(str_save[idx] + '\n')
 
