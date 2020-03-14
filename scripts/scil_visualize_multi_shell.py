@@ -175,14 +175,29 @@ def main():
 
     ms = build_ms_from_shell_idx(points, shell_idx)
 
+        
     if proj:
-        plot_proj_shell(ms, use_sym=sym, use_sphere=sph, same_color=same,
-                        rad=0.025, opacity=args.opacity,
-                        ofile=out_basename, ores=tuple(args.res))
+        if args.out:
+            plot_proj_shell(ms, use_sym=sym, use_sphere=sph,
+                            same_color=same,
+                            rad=0.025, opacity=args.opacity,
+                            ofile=out_basename, ores=tuple(args.res))
+        else:
+            plot_proj_shell(ms, use_sym=sym, use_sphere=sph,
+                            same_color=same,
+                            rad=0.025, opacity=args.opacity,
+                            ofile=None, ores=tuple(args.res))
     if each:
-        plot_each_shell(ms, plot_sym_vecs=sym, use_sphere=sph, same_color=same,
-                        rad=0.025, opacity=args.opacity,
-                        ofile=out_basename, ores=tuple(args.res))
+        if args.out:
+            plot_each_shell(ms, plot_sym_vecs=sym, use_sphere=sph,
+                            same_color=same,
+                            rad=0.025, opacity=args.opacity,
+                            ofile=out_basename, ores=tuple(args.res))
+        else:
+            plot_each_shell(ms, plot_sym_vecs=sym, use_sphere=sph,
+                            same_color=same,
+                            rad=0.025, opacity=args.opacity, ofile=None,
+                            ores=tuple(args.res))
 
 
 if __name__ == "__main__":
